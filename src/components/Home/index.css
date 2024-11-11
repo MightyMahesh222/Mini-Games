@@ -1,8 +1,7 @@
 .homeDiv {
-  background: linear-gradient(117.3deg, #834d9b 2.24%, #d04ed6 173.83%);
+  background-image: linear-gradient(117.3deg, #834d9b 2.24%, #d04ed6 173.83%);
   width: 100vw;
   min-height: 100vh;
-  opacity: 0px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -54,7 +53,6 @@
   top: 96px;
   left: 644px;
   gap: 0px;
-  opacity: 0px;
   font-family: Roboto;
   font-size: 48px;
   font-weight: 700;
@@ -74,7 +72,6 @@
 
 .gameImageDiv {
   border-radius: 10px;
-  opacity: 0px;
   cursor: pointer;
 }
 

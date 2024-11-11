@@ -358,6 +358,14 @@
   align-items: center;
   justify-content: space-between;
   margin: 20px 0px;
+  width: 60vw;
+}
+
+.emojiContainer {
+  width: 70vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .rulesBtn {

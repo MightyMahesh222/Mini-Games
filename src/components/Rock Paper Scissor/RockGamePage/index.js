@@ -1,7 +1,23 @@
-import Popup from 'reactjs-popup'
-import {useState, useEffect} from 'react'
+import Modal from 'react-modal'
+import {useState, useEffect, useCallback} from 'react'
 import {IoMdClose} from 'react-icons/io'
+
 import './index.css'
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    width: '80vw',
+    maxWidth: '800px',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+}
+
+Modal.setAppElement('#root')
 
 const RockGamePage = props => {
   const {choicesList, setIsTrue} = props
@@ -10,6 +26,10 @@ const RockGamePage = props => {
   const [randomPick, setRandomPick] = useState(null)
   const [isWon, setIsWon] = useState('')
   const [score, setScore] = useState(0)
+  const [modalIsOpen, setIsOpen] = useState(false)
+  const openModal = useCallback(() => setIsOpen(true), [])
+  const closeModal = useCallback(() => setIsOpen(false), [])
+
   const goToRules = () => {
     setIsTrue(false)
   }
@@ -75,90 +95,82 @@ const RockGamePage = props => {
           </button>
         </div>
         <div>
-          <Popup
-            modal
-            trigger={
-              <button
-                className="rockRulesBtn"
-                data-testid="hamburgerIconButton"
-                type="button"
-              >
-                Rules
-              </button>
-            }
-            className="popup-content"
+          <button
+            className="rockRulesBtn"
+            data-testid="hamburgerIconButton"
+            type="button"
+            onClick={openModal}
           >
-            {close => (
-              <>
-                <div className="modal">
-                  <button
-                    className="close"
-                    data-testid="closeButton"
-                    type="button"
-                    onClick={close}
-                  >
-                    <IoMdClose />{' '}
-                  </button>
-                </div>
-                <div>
-                  <h3 className="modalRules">Rules</h3>
-                  <ul className="rockUl">
-                    <li className="modalLi">
-                      The game result should be based on user and user opponent
-                      choices
-                    </li>
-                    <li className="modalLi">
-                      When the user choice is rock and his opponent choice is
-                      rock then the result will be<span> IT IS DRAW</span>
-                    </li>
-                    <li className="modalLi">
-                      When the user choice is paper and his opponent choice is
-                      rock then the result will be <span>YOU WON</span>
-                    </li>
-                    <li className="modalLi">
-                      When the user choice is a scissor and his opponent choice
-                      is rock then the result will be <span>YOU LOSE</span>
-                    </li>
-                    <li className="modalLi">
-                      When the user choice is paper and his opponent choice is
-                      paper then the result will be <span>IT IS DRAW</span>
-                    </li>
-                    <li className="modalLi">
-                      When the user choice is scissors and his opponent choice
-                      is paper then the result will be <span>YOU WON</span>
-                    </li>
-                    <li className="modalLi">
-                      When the user choice is rock and his opponent choice is
-                      scissors then the result will be<span> YOU WON</span>
-                    </li>
-                    <li className="modalLi">
-                      When the user choice is paper and his opponent choice is
-                      scissors then the result will be <span>YOU LOSE</span>
-                    </li>
-                    <li className="modalLi">
-                      When the user choice is scissors and his opponent choice
-                      is scissors then the result will be{' '}
-                      <span>IT IS DRAW</span>
-                    </li>
-                    <li className="modalLi">
-                      When the result is YOU WON, then the count of the score
-                      should be incremented by 1
-                    </li>
-                    <li className="modalLi">
-                      When the result is IT IS DRAW, then the count of the score
-                      should be the same
-                    </li>
-                    <li className="modalLi">
-                      When the result is IT IS DRAW, then the count of the score
-                      should be the same
-                    </li>
-                  </ul>
-                </div>
-              </>
-            )}
-          </Popup>
+            Rules
+          </button>
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="Information Modal"
+          >
+            <div>
+              <h3 className="modalRules">Rules</h3>
+              <div className="modal">
+                <button type="button" onClick={closeModal} className="close">
+                  <IoMdClose />{' '}
+                </button>
+              </div>
+              <ul className="rockUl">
+                <li className="modalLi">
+                  The game result should be based on user and user opponent
+                  choices
+                </li>
+                <li className="modalLi">
+                  When the user choice is rock and his opponent choice is rock
+                  then the result will be<span> IT IS DRAW</span>
+                </li>
+                <li className="modalLi">
+                  When the user choice is paper and his opponent choice is rock
+                  then the result will be <span>YOU WON</span>
+                </li>
+                <li className="modalLi">
+                  When the user choice is a scissor and his opponent choice is
+                  rock then the result will be <span>YOU LOSE</span>
+                </li>
+                <li className="modalLi">
+                  When the user choice is paper and his opponent choice is paper
+                  then the result will be <span>IT IS DRAW</span>
+                </li>
+                <li className="modalLi">
+                  When the user choice is scissors and his opponent choice is
+                  paper then the result will be <span>YOU WON</span>
+                </li>
+                <li className="modalLi">
+                  When the user choice is rock and his opponent choice is
+                  scissors then the result will be<span> YOU WON</span>
+                </li>
+                <li className="modalLi">
+                  When the user choice is paper and his opponent choice is
+                  scissors then the result will be <span>YOU LOSE</span>
+                </li>
+                <li className="modalLi">
+                  When the user choice is scissors and his opponent choice is
+                  scissors then the result will be <span>IT IS DRAW</span>
+                </li>
+                <li className="modalLi">
+                  When the result is YOU WON, then the count of the score should
+                  be incremented by 1
+                </li>
+                <li className="modalLi">
+                  When the result is IT IS DRAW, then the count of the score
+                  should be the same
+                </li>
+                <li className="modalLi">
+                  When the result is IT IS DRAW, then the count of the score
+                  should be the same
+                </li>
+              </ul>
+            </div>
+          </Modal>
         </div>
       </div>
+
       <h2 className="rockPaperHeading">ROCK PAPER SCISSOR</h2>
       <h2 className="rockPaperHeading">Lets pick</h2>
       <div className="rockGameChooseDiv">

@@ -1,8 +1,23 @@
-import Popup from 'reactjs-popup'
+import Modal from 'react-modal'
+import {useState, useCallback} from 'react'
 import {IoMdClose} from 'react-icons/io'
-import {useState} from 'react'
 import EmojiHeader from '../EmojiHeader'
 import './index.css'
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    width: '80vw',
+    maxWidth: '800px',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+}
+
+Modal.setAppElement('#root')
 
 const EmojiGamePage = props => {
   const {emojisList, setIsTrue} = props
@@ -12,6 +27,11 @@ const EmojiGamePage = props => {
   const [gameOver, setGameOver] = useState(false)
   const [myEmojis, setEmojis] = useState(emojisList)
   const [ClickedEmojiIds, setClickedEmojis] = useState([])
+  const [modalIsOpen, setIsOpen] = useState(false)
+
+  const openModal = useCallback(() => setIsOpen(true), [])
+  const closeModal = useCallback(() => setIsOpen(false), [])
+
   const playAgain = () => {
     setGameOver(false)
     setScore(0)
@@ -144,64 +164,58 @@ const EmojiGamePage = props => {
                 Back
               </button>
             </div>
-            <Popup
-              modal
-              trigger={
-                <button
-                  className="emojiRulesBtn"
-                  data-testid="hamburgerIconButton"
-                  type="button"
-                >
-                  Rules
-                </button>
-              }
-              className="popup-content"
+
+            <button
+              className="emojiRulesBtn"
+              data-testid="hamburgerIconButton"
+              type="button"
+              onClick={openModal}
             >
-              {close => (
-                <>
-                  <div className="modal">
-                    <button
-                      className="close"
-                      data-testid="closeButton"
-                      type="button"
-                      onClick={close}
-                    >
-                      <IoMdClose />{' '}
-                    </button>
-                  </div>
-                  <div>
-                    <h3 className="modalRules">Rules</h3>
-                    <ul className="rockUl">
-                      <li className="modalLi">
-                        This process should be repeated every time the user
-                        clicks on an emoji card
-                      </li>
-                      <li className="modalLi">
-                        When the user clicks any one of the Emoji for the first
-                        time, then the count of the score should be incremented
-                        by 1 and the List of emoji cards should be shuffled.
-                      </li>
-                      <li className="modalLi">
-                        When the user clicks on all Emoji cards without clicking
-                        any of it twice, then the user will win the game
-                      </li>
-                      <li className="modalLi">
-                        When the user clicks on the same Emoji for the second
-                        time, then the user will lose the game.
-                      </li>
-                      <li className="modalLi">
-                        Once the game is over, the user will be redirected to
-                        the results page.
-                      </li>
-                      <li className="modalLi">
-                        User should be able to see the list of Emojis
-                      </li>
-                    </ul>
-                  </div>
-                </>
-              )}
-            </Popup>
+              Rules
+            </button>
           </div>
+          <div>
+            <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              style={customStyles}
+              contentLabel="Information Modal"
+            >
+              <h3 className="modalRules">Rules</h3>
+              <div className="modal">
+                <button type="button" onClick={closeModal} className="close">
+                  <IoMdClose />{' '}
+                </button>
+              </div>
+              <ul className="rockUl">
+                <li className="modalLi">
+                  This process should be repeated every time the user clicks on
+                  an emoji card
+                </li>
+                <li className="modalLi">
+                  When the user clicks any one of the Emoji for the first time,
+                  then the count of the score should be incremented by 1 and the
+                  List of emoji cards should be shuffled.
+                </li>
+                <li className="modalLi">
+                  When the user clicks on all Emoji cards without clicking any
+                  of it twice, then the user will win the game
+                </li>
+                <li className="modalLi">
+                  When the user clicks on the same Emoji for the second time,
+                  then the user will lose the game.
+                </li>
+                <li className="modalLi">
+                  Once the game is over, the user will be redirected to the
+                  results page.
+                </li>
+                <li className="modalLi">
+                  User should be able to see the list of Emojis
+                </li>
+              </ul>
+            </Modal>
+          </div>
+
           <div className="emojisDiv">
             {myEmojis.map(every => (
               <button

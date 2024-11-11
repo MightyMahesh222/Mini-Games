@@ -1,9 +1,24 @@
-import Popup from 'reactjs-popup'
-import {useState, useEffect} from 'react'
+import Modal from 'react-modal'
+import {useState, useEffect, useCallback} from 'react'
 import {Redirect} from 'react-router-dom'
 import {IoMdClose} from 'react-icons/io'
 
 import './index.css'
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    width: '80vw',
+    maxWidth: '800px',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+}
+
+Modal.setAppElement('#root')
 
 const MemoryMatrix = () => {
   const [gridSize, setGridSize] = useState(3) // Start with 3x3 grid
@@ -16,6 +31,10 @@ const MemoryMatrix = () => {
   const [rulesPage, setRulesPage] = useState(true) // Show rules initially
   const [home, setHome] = useState(false)
   const [gameOver, setGameOver] = useState(false)
+  const [modalIsOpen, setIsOpen] = useState(false)
+
+  const openModal = useCallback(() => setIsOpen(true), [])
+  const closeModal = useCallback(() => setIsOpen(false), [])
 
   if (level > maxLevel) {
     localStorage.setItem('maxLevel', level)
@@ -288,63 +307,59 @@ const MemoryMatrix = () => {
               </button>
             </div>
             <div>
-              <Popup
-                modal
-                trigger={
-                  <button
-                    className="matrixRulesBtn"
-                    data-testid="hamburgerIconButton"
-                    type="button"
-                  >
-                    Rules
-                  </button>
-                }
-                className="popup-content"
+              <button
+                className="matrixRulesBtn"
+                data-testid="hamburgerIconButton"
+                type="button"
+                onClick={openModal}
               >
-                {close => (
-                  <>
-                    <div className="modal">
-                      <button
-                        className="close"
-                        data-testid="closeButton"
-                        type="button"
-                        onClick={close}
-                      >
-                        <IoMdClose />{' '}
-                      </button>
-                    </div>
-                    <div>
-                      <h3 className="modalRules">Rules</h3>
-                      <ul className="rockUl">
-                        <li className="modalLi">
-                          In each level, users will see a grid starting at 3x3,
-                          with N cells highlighted.
-                        </li>
-                        <li className="modalLi">
-                          The highlighted cells will be visible for N seconds,
-                          during which no action can be performed.
-                        </li>
-                        <li className="modalLi">
-                          After N seconds, the grid will hide the highlighted
-                          cells, allowing you to select them.
-                        </li>
-                        <li className="modalLi">
-                          Clicking on a previously highlighted cell will turn it
-                          blue; clicking elsewhere will turn it red.
-                        </li>
-                        <li className="modalLi">
-                          If all highlighted cells are selected in one attempt,
-                          you will move to the next level.
-                        </li>
-                        <li className="modalLi">
-                          The game ends if a non-highlighted cell is clicked,
-                          taking you to the results page.
-                        </li>
-                      </ul>
-                    </div>
-                  </>
-                )}
-              </Popup>
+                Rules
+              </button>
+              <div>
+                <Modal
+                  isOpen={modalIsOpen}
+                  onRequestClose={closeModal}
+                  style={customStyles}
+                  contentLabel="Information Modal"
+                >
+                  <h3 className="modalRules">Rules</h3>
+                  <div className="modal">
+                    <button
+                      type="button"
+                      onClick={closeModal}
+                      className="close"
+                    >
+                      <IoMdClose />{' '}
+                    </button>
+                  </div>
+                  <ul className="rockUl">
+                    <li className="modalLi">
+                      In each level, users will see a grid starting at 3x3, with
+                      N cells highlighted.
+                    </li>
+                    <li className="modalLi">
+                      The highlighted cells will be visible for N seconds,
+                      during which no action can be performed.
+                    </li>
+                    <li className="modalLi">
+                      After N seconds, the grid will hide the highlighted cells,
+                      allowing you to select them.
+                    </li>
+                    <li className="modalLi">
+                      Clicking on a previously highlighted cell will turn it
+                      blue; clicking elsewhere will turn it red.
+                    </li>
+                    <li className="modalLi">
+                      If all highlighted cells are selected in one attempt, you
+                      will move to the next level.
+                    </li>
+                    <li className="modalLi">
+                      The game ends if a non-highlighted cell is clicked, taking
+                      you to the results page.
+                    </li>
+                  </ul>
+                </Modal>
+              </div>
             </div>
           </div>
           <h1 className="memoryHeading">Memory Matrix Game</h1>

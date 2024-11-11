@@ -1,8 +1,23 @@
-import Popup from 'reactjs-popup'
-import {useState, useEffect} from 'react'
-import {Redirect} from 'react-router-dom'
+import Modal from 'react-modal'
+import {useState, useEffect, useCallback} from 'react'
 import {IoMdClose} from 'react-icons/io'
+import {Redirect} from 'react-router-dom'
 import './index.css'
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    width: '80vw',
+    maxWidth: '800px',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+}
+
+Modal.setAppElement('#root')
 
 const CardFlip = props => {
   const {cardsList} = props
@@ -16,6 +31,10 @@ const CardFlip = props => {
   const recordScore = Number(localStorage.getItem('recordTime') || 0)
   const [time, setTime] = useState(120)
   const [gameStarted, setGameStarted] = useState(false)
+  const [modalIsOpen, setIsOpen] = useState(false)
+
+  const openModal = useCallback(() => setIsOpen(true), [])
+  const closeModal = useCallback(() => setIsOpen(false), [])
 
   if (score === 10 && flipCount < recordScore) {
     localStorage.setItem('recordTime', flipCount)
@@ -205,7 +224,7 @@ const CardFlip = props => {
             />
           </div>
           <div className="rulesPadding">
-            <div className="rockRulesContainer">
+            <div className="matrixRulesContainer">
               <h2 className="rockRulesHeading">Rules</h2>
               <ul className="rockUl">
                 <li className="rockLi">
@@ -265,75 +284,74 @@ const CardFlip = props => {
                 </button>
               </div>
               <div>
-                <Popup
-                  modal
-                  trigger={
-                    <button
-                      className="matrixRulesBtn"
-                      data-testid="hamburgerIconButton"
-                      type="button"
-                    >
-                      Rules
-                    </button>
-                  }
-                  className="popup-content"
+                <button
+                  className="matrixRulesBtn"
+                  data-testid="hamburgerIconButton"
+                  type="button"
+                  onClick={openModal}
                 >
-                  {close => (
-                    <>
+                  Rules
+                </button>
+
+                <>
+                  <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Information Modal"
+                  >
+                    <div>
+                      <h3 className="modalRules">Rules</h3>
                       <div className="modal">
                         <button
-                          className="close"
-                          data-testid="closeButton"
                           type="button"
-                          onClick={close}
+                          onClick={closeModal}
+                          className="close"
                         >
                           <IoMdClose />{' '}
                         </button>
                       </div>
-                      <div>
-                        <h3 className="modalRules">Rules</h3>
-                        <ul className="rockUl">
-                          <li className="modalLi">
-                            When the game is started, the users should be able
-                            to see the list of Cards that are shuffled and
-                            turned face down.
-                          </li>
+                      <ul className="rockUl">
+                        <li className="modalLi">
+                          When the game is started, the users should be able to
+                          see the list of Cards that are shuffled and turned
+                          face down.
+                        </li>
 
-                          <li className="modalLi">
-                            If the two cards have the same image, they remain
-                            face up. If not, they should be flipped face down
-                            again after a short 2 seconds
-                          </li>
-                          <li className="modalLi">
-                            When a user starts the game, the user should be able
-                            to see the Timer running
-                          </li>
-                          <li className="modalLi">
-                            When the user is not able to find all the cards
-                            before the timer ends then the game should end and
-                            redirect to the Time Up Page.
-                          </li>
-                          <li className="modalLi">
-                            If the user finds all the matching cards before the
-                            timer ends, then the user should be redirected to
-                            the results page.
-                          </li>
-                          <li className="modalLi">
-                            The Timer starts from 2 Minutes.{' '}
-                          </li>
-                          <li className="modalLi">
-                            Users should be able to compare only two cards at a
-                            time.
-                          </li>
-                        </ul>
-                      </div>
-                    </>
-                  )}
-                </Popup>
+                        <li className="modalLi">
+                          If the two cards have the same image, they remain face
+                          up. If not, they should be flipped face down again
+                          after a short 2 seconds
+                        </li>
+                        <li className="modalLi">
+                          When a user starts the game, the user should be able
+                          to see the Timer running
+                        </li>
+                        <li className="modalLi">
+                          When the user is not able to find all the cards before
+                          the timer ends then the game should end and redirect
+                          to the Time Up Page.
+                        </li>
+                        <li className="modalLi">
+                          If the user finds all the matching cards before the
+                          timer ends, then the user should be redirected to the
+                          results page.
+                        </li>
+                        <li className="modalLi">
+                          The Timer starts from 2 Minutes.{' '}
+                        </li>
+                        <li className="modalLi">
+                          Users should be able to compare only two cards at a
+                          time.
+                        </li>
+                      </ul>
+                    </div>
+                  </Modal>
+                </>
               </div>
             </div>
           </div>
-          <div>
+          <div className="specialDiv">
             <h1 className="cardFlipHeading">Card-Flip Memory Game</h1>
             <p className="cardTimer">
               {minutes > 9 ? minutes : `0${minutes}`}:
