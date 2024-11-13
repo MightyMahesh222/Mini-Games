@@ -1,6 +1,6 @@
 import Modal from 'react-modal'
 import {useState, useEffect, useCallback} from 'react'
-import {IoMdClose} from 'react-icons/io'
+import {CgClose} from 'react-icons/cg'
 
 import './index.css'
 
@@ -16,8 +16,6 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
   },
 }
-
-Modal.setAppElement('#root')
 
 const RockGamePage = props => {
   const {choicesList, setIsTrue} = props
@@ -67,17 +65,26 @@ const RockGamePage = props => {
   let emoji
   let girlReaction
   let winorlose
+  let girlAlt
+  let alt
+
   if (isWon === 'WON') {
-    emoji = '😍'
+    emoji = 'https://ik.imagekit.io/sdce03tuc/Emoji.svg'
     winorlose = 'YOU WON'
+    girlAlt = 'won emoji'
+    alt = 'Smiling face with star eyes'
     girlReaction = 'https://ik.imagekit.io/sdce03tuc/Group%207618.svg'
   } else if (isWon === 'LOSE') {
-    emoji = '☹️'
+    emoji = 'https://ik.imagekit.io/sdce03tuc/Emoji%20(2).svg'
     winorlose = 'YOU LOSE'
+    girlAlt = 'lose emoji'
+    alt = 'Face without mouth'
     girlReaction = 'https://ik.imagekit.io/sdce03tuc/Group%207618%20(2).svg'
   } else {
-    emoji = '😐'
+    emoji = 'https://ik.imagekit.io/sdce03tuc/Emoji%20(1).svg'
     winorlose = 'IT IS DRAW'
+    girlAlt = 'draw emoji'
+    alt = 'Face without mouth'
     girlReaction = 'https://ik.imagekit.io/sdce03tuc/Group%207618%20(1).svg'
   }
 
@@ -112,8 +119,13 @@ const RockGamePage = props => {
             <div>
               <h3 className="modalRules">Rules</h3>
               <div className="modal">
-                <button type="button" onClick={closeModal} className="close">
-                  <IoMdClose />{' '}
+                <button
+                  data-testid="close"
+                  type="button"
+                  onClick={closeModal}
+                  className="close"
+                >
+                  <CgClose />{' '}
                 </button>
               </div>
               <ul className="rockUl">
@@ -171,11 +183,12 @@ const RockGamePage = props => {
         </div>
       </div>
 
-      <h2 className="rockPaperHeading">ROCK PAPER SCISSOR</h2>
-      <h2 className="rockPaperHeading">Lets pick</h2>
+      <h1 className="rockPaperHeading">Rock Paper Scissor</h1>
+      <h1 className="rockPaperHeading">Lets pick</h1>
       <div className="rockGameChooseDiv">
         {choicesList.map((every, index) => (
           <button
+            data-testid={`${every.id}Button`}
             onClick={() => userClicked(index)}
             type="button"
             className="imageBtn"
@@ -188,7 +201,7 @@ const RockGamePage = props => {
     </div>
   ) : (
     <div className="rockResultDiv">
-      <h2 className="rockPaperHeading">ROCK PAPER SCISSOR</h2>
+      <h1 className="rockPaperHeading">Rock Paper Scissor</h1>
       <div className="rockScoreDiv">
         <div>
           <p className="rockHeading">Rock</p>
@@ -196,7 +209,7 @@ const RockGamePage = props => {
           <p className="rockHeading">Scissor</p>
         </div>
         <div>
-          <img className="girlReaction" alt="reaction" src={girlReaction} />
+          <img className="girlReaction" alt={girlAlt} src={girlReaction} />
         </div>
         <div className="scoreDetailsDiv">
           <p className="rockScoreHeading">Score</p>
@@ -207,13 +220,13 @@ const RockGamePage = props => {
         <div className="rockColumnDiv">
           <p>You</p>
           <img
-            alt="userPick"
+            alt={choicesList[userPick].id}
             className="rockImage"
             src={choicesList[userPick].imageUrl}
           />
         </div>
         <div className="rockColumnDiv">
-          <p className="rockEmoji">{emoji}</p>
+          <img alt={alt} className="rockEmoji" src={emoji} />
           <p className="youWon">{winorlose}</p>
           <button
             className="rockPlayAgainBtn"

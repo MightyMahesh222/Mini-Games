@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import {Redirect} from 'react-router-dom'
+import {BiArrowBack} from 'react-icons/bi'
 import EmojiGamePage from './EmojiGamePage'
 
 import './index.css'
@@ -25,20 +26,17 @@ const EmojiGame = props => {
         <div>
           <div className="buttonDiv">
             <button className="backBtn" onClick={goToHome} type="button">
-              <img
-                className="arrowImg"
-                alt="i"
-                src="https://ik.imagekit.io/sdce03tuc/arrow-left.svg?updatedAt=1730197320814"
-              />
+              <BiArrowBack className="arrowImg" />
               Back
             </button>
           </div>
           <div className="rulesDiv">
             <div>
               <img
-                alt="images"
+                alt="emoji game"
                 src="https://ik.imagekit.io/sdce03tuc/Group%207471.svg"
               />
+              <h1>Emoji Game</h1>
             </div>
             <div className="rulesContainer">
               <h2 className="rulesHeading">Rules</h2>

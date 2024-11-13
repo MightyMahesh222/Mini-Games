@@ -287,18 +287,8 @@
   flex-direction: column;
 }
 
-.lower {
-  width: 80vw;
-  height: 20px;
-  border-radius: 20px;
-  background-color: aliceblue;
-}
-
 .upper {
-  width: 100px;
-  height: 20px;
   border-radius: 20px;
-  background-color: #467aff;
 }
 .congrats {
   font-size: 20px;

@@ -1,6 +1,6 @@
 import Modal from 'react-modal'
 import {useState, useCallback} from 'react'
-import {IoMdClose} from 'react-icons/io'
+import {CgClose} from 'react-icons/cg'
 import EmojiHeader from '../EmojiHeader'
 import './index.css'
 
@@ -16,8 +16,6 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
   },
 }
-
-Modal.setAppElement('#root')
 
 const EmojiGamePage = props => {
   const {emojisList, setIsTrue} = props
@@ -79,7 +77,7 @@ const EmojiGamePage = props => {
               <div className="scoreDetails">
                 <h2 className="youLose">You Won</h2>
                 <p className="bestScore">Best Score</p>
-                <h2 className="finalScore">{score}/12</h2>
+                <p className="finalScore">{score}/12</p>
                 <button onClick={playAgain} className="playAgain" type="button">
                   Play Again
                 </button>
@@ -87,7 +85,7 @@ const EmojiGamePage = props => {
               <div>
                 <img
                   className="winLoseImg"
-                  alt="winEmoji"
+                  alt="won"
                   src="https://ik.imagekit.io/sdce03tuc/Image.svg"
                 />
               </div>
@@ -101,17 +99,17 @@ const EmojiGamePage = props => {
                     <div>
                       <img
                         src="https://ik.imagekit.io/sdce03tuc/02%20Happy.svg"
-                        alt="done"
+                        alt="won"
                         className="gameOverEmoji"
                       />
                       <img
                         src="https://ik.imagekit.io/sdce03tuc/02%20Happy.svg"
-                        alt="done"
+                        alt="won"
                         className="gameOverEmoji"
                       />
                       <img
                         src="https://ik.imagekit.io/sdce03tuc/02%20Happy.svg"
-                        alt="done"
+                        alt="won"
                         className="gameOverEmoji"
                       />
                     </div>
@@ -119,24 +117,24 @@ const EmojiGamePage = props => {
                     <div>
                       <img
                         src="https://ik.imagekit.io/sdce03tuc/05%20Pokerface.svg"
-                        alt="done"
+                        alt="won"
                         className="gameOverEmoji"
                       />
                       <img
                         src="https://ik.imagekit.io/sdce03tuc/05%20Pokerface.svg"
-                        alt="done"
+                        alt="won"
                         className="gameOverEmoji"
                       />
                       <img
                         src="https://ik.imagekit.io/sdce03tuc/05%20Pokerface.svg"
-                        alt="done"
+                        alt="won"
                         className="gameOverEmoji"
                       />
                     </div>
                   )}
                 </div>
-                <p className="bestScore">Best Score</p>
-                <h2 className="finalScore">{score}/12</h2>
+                <p className="bestScore">Score</p>
+                <p className="finalScore">{score}/12</p>
                 <button onClick={playAgain} className="playAgain" type="button">
                   Play Again
                 </button>
@@ -144,7 +142,7 @@ const EmojiGamePage = props => {
               <div>
                 <img
                   className="winLoseImg"
-                  alt="loseEmoji"
+                  alt="lose"
                   src="https://ik.imagekit.io/sdce03tuc/Image%20(1).svg"
                 />
               </div>
@@ -183,8 +181,13 @@ const EmojiGamePage = props => {
             >
               <h3 className="modalRules">Rules</h3>
               <div className="modal">
-                <button type="button" onClick={closeModal} className="close">
-                  <IoMdClose />{' '}
+                <button
+                  type="button"
+                  data-testid="close"
+                  onClick={closeModal}
+                  className="close"
+                >
+                  <CgClose />{' '}
                 </button>
               </div>
               <ul className="rockUl">
@@ -216,9 +219,9 @@ const EmojiGamePage = props => {
             </Modal>
           </div>
 
-          <div className="emojisDiv">
+          <ul className="emojisDiv">
             {myEmojis.map(every => (
-              <button
+              <li
                 key={every.id}
                 onClick={() => addToClickedEmojis(every.id)}
                 type="button"
@@ -229,9 +232,9 @@ const EmojiGamePage = props => {
                   alt={every.emojiName}
                   src={every.emojiUrl}
                 />
-              </button>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       )}
     </div>

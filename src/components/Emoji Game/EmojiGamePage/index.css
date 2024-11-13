@@ -391,3 +391,7 @@
   text-align: left;
   margin-bottom: 19px;
 }
+
+li {
+  list-style-type: none;
+}

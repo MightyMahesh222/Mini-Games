@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {BiArrowBack} from 'react-icons/bi'
 import {Redirect} from 'react-router-dom'
 import RockGamePage from './RockGamePage'
 import './index.css'
@@ -24,11 +25,7 @@ const RockPaper = props => {
         <div>
           <div className="buttonDiv">
             <button className="rockBackBtn" onClick={goToHome} type="button">
-              <img
-                className="rockArrowImg"
-                alt="i"
-                src="https://ik.imagekit.io/sdce03tuc/arrow-left%20(1).svg"
-              />
+              <BiArrowBack className="rockArrowImg" />
               Back
             </button>
           </div>
@@ -37,7 +34,7 @@ const RockPaper = props => {
               <h2 className="rockPaperHeading">ROCK PAPER SCISSOR</h2>
               <img
                 className="rockRulesImage"
-                alt="images"
+                alt="rock paper scissor"
                 src="https://ik.imagekit.io/sdce03tuc/Group%207469.svg?updatedAt=1729916331466"
               />
             </div>
@@ -89,8 +86,8 @@ const RockPaper = props => {
                   should be the same
                 </li>
                 <li className="rockLi">
-                  When the result is IT IS DRAW, then the count of the score
-                  should be the same
+                  When the result is IT IS LOSE, then the count of the score
+                  should be decremented by 1
                 </li>
               </ul>
               <button

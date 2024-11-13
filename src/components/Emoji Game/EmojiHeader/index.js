@@ -8,7 +8,7 @@ const Header = props => {
       <div className="scoreDiv">
         <img
           className="emojiHeaderImg"
-          alt="img"
+          alt="emoji logo"
           src="https://ik.imagekit.io/sdce03tuc/wink%201.jpg"
         />
         <p className="emojiName">Emoji Game</p>
@@ -16,7 +16,7 @@ const Header = props => {
       {!gameOver && (
         <div className="scoreDiv">
           <p className="topScore">Top Score : {localScore}</p>
-          <p className="topScore">Score : {score}</p>
+          <p className="topScore">Score: {score}</p>
         </div>
       )}
     </div>

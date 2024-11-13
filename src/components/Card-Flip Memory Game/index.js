@@ -1,7 +1,9 @@
 import Modal from 'react-modal'
 import {useState, useEffect, useCallback} from 'react'
-import {IoMdClose} from 'react-icons/io'
+import {BiArrowBack} from 'react-icons/bi'
+import {CgClose} from 'react-icons/cg'
 import {Redirect} from 'react-router-dom'
+
 import './index.css'
 
 const customStyles = {
@@ -16,8 +18,6 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
   },
 }
-
-Modal.setAppElement('#root')
 
 const CardFlip = props => {
   const {cardsList} = props
@@ -165,14 +165,14 @@ const CardFlip = props => {
           <img
             className="wonImageLast"
             src="https://ik.imagekit.io/sdce03tuc/05%20Pokerface.svg"
-            alt="won"
+            alt="neutral face"
           />
         </div>
-        <p className="congratulations">Better luck next time!</p>
+        <h1 className="congratulations">Better luck next time!</h1>
         <p className="noFlips">No.of Flips - {flipCount}</p>
-        <p className="infoMsg">
+        <h1 className="infoMsg">
           You did not match all of the cards in record time
-        </p>
+        </h1>
         <div>
           <button onClick={replay} className="wonPlayAgain" type="button">
             Play Again
@@ -185,12 +185,12 @@ const CardFlip = props => {
           <img
             className="wonImageLast"
             src="https://ik.imagekit.io/sdce03tuc/03%20Optimistic.svg"
-            alt="won"
+            alt="neutral face"
           />
         </div>
         <p className="congratulations">Congratulations!</p>
         <p className="noFlips">No.of Flips - {flipCount}</p>
-        <p className="infoMsg">You matched all the cards in record time</p>
+        <h1 className="infoMsg">You matched all the cards in record time</h1>
         <div>
           <button onClick={replay} className="wonPlayAgain" type="button">
             Play Again
@@ -207,18 +207,14 @@ const CardFlip = props => {
           <div className="rockRowSpaceDiv">
             <div className="buttonDiv">
               <button className="rockBackBtn" onClick={goToHome} type="button">
-                <img
-                  className="rockArrowImg"
-                  alt="i"
-                  src="https://ik.imagekit.io/sdce03tuc/arrow-left%20(1).svg"
-                />
+                <BiArrowBack className="rockArrowImg" />
                 Back
               </button>
             </div>
           </div>
           <div>
             <img
-              alt="animalCards"
+              alt="card flip memory game"
               className="animalsImage"
               src="https://ik.imagekit.io/sdce03tuc/animals%20(1).svg"
             />
@@ -301,14 +297,15 @@ const CardFlip = props => {
                     contentLabel="Information Modal"
                   >
                     <div>
-                      <h3 className="modalRules">Rules</h3>
+                      <h1 className="modalRules">Rules</h1>
                       <div className="modal">
                         <button
                           type="button"
                           onClick={closeModal}
                           className="close"
+                          data-testid="close"
                         >
-                          <IoMdClose />{' '}
+                          <CgClose />{' '}
                         </button>
                       </div>
                       <ul className="rockUl">
@@ -374,6 +371,7 @@ const CardFlip = props => {
             {shuffledImages.map(every => (
               <div key={every.unqId}>
                 <button
+                  data-testid={every.name}
                   disabled={every.isMatched}
                   type="button"
                   className={`cardDiv ${every.isActive ? 'flipped' : ''}`}
@@ -382,7 +380,11 @@ const CardFlip = props => {
                   }}
                 >
                   <div className="back">
-                    <img className="cardImage" alt="images" src={every.image} />
+                    <img
+                      className="cardImage"
+                      alt={every.name}
+                      src={every.image}
+                    />
                   </div>
                   <div className="front">
                     <img

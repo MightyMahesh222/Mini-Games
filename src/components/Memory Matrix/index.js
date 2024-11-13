@@ -1,7 +1,9 @@
 import Modal from 'react-modal'
 import {useState, useEffect, useCallback} from 'react'
 import {Redirect} from 'react-router-dom'
-import {IoMdClose} from 'react-icons/io'
+import {BiArrowBack} from 'react-icons/bi'
+import {CgClose} from 'react-icons/cg'
+import {Line} from 'rc-progress'
 
 import './index.css'
 
@@ -18,14 +20,12 @@ const customStyles = {
   },
 }
 
-Modal.setAppElement('#root')
-
 const MemoryMatrix = () => {
   const [gridSize, setGridSize] = useState(3) // Start with 3x3 grid
   const [highlightedCells, setHighlightedCells] = useState([])
   const [clickedCells, setClickedCells] = useState([])
   const [showGrid, setShowGrid] = useState(false)
-  const [level, setLevel] = useState(1)
+  const [levelNumber, setLevel] = useState(1)
   const [message, setMessage] = useState('')
   const maxLevel = Number(localStorage.getItem('maxLevel') || 0)
   const [rulesPage, setRulesPage] = useState(true) // Show rules initially
@@ -36,8 +36,8 @@ const MemoryMatrix = () => {
   const openModal = useCallback(() => setIsOpen(true), [])
   const closeModal = useCallback(() => setIsOpen(false), [])
 
-  if (level > maxLevel) {
-    localStorage.setItem('maxLevel', level)
+  if (levelNumber > maxLevel) {
+    localStorage.setItem('maxLevel', levelNumber)
   }
 
   const highlightRandomCells = () => {
@@ -69,7 +69,7 @@ const MemoryMatrix = () => {
             setGridSize(gridSize + 1)
             setClickedCells([])
             setMessage('')
-            setLevel(level + 1)
+            setLevel(levelNumber + 1)
           }, 1000)
         }
       } else {
@@ -108,6 +108,7 @@ const MemoryMatrix = () => {
       <div
         key={`cell-${index}`}
         role="button"
+        data-test-id="highlighted"
         disabled={isCorrect}
         tabIndex={0}
         onClick={() => handleCellClick(index)}
@@ -128,22 +129,6 @@ const MemoryMatrix = () => {
     highlightRandomCells()
   }
 
-  const width = level * 4
-
-  const lower = {
-    width: '60vw',
-    height: '20px',
-    borderRadius: '20px',
-    backgroundColor: 'aliceblue',
-  }
-
-  const upper = {
-    width: `${width}vw`,
-    height: '20px',
-    borderRadius: '20px',
-    backgroundColor: '#467aff',
-  }
-
   if (home) {
     return <Redirect to="/" />
   }
@@ -155,71 +140,78 @@ const MemoryMatrix = () => {
           <div>
             <img
               src="https://ik.imagekit.io/sdce03tuc/05%20Pokerface.svg"
-              alt="done"
+              alt="neutral face"
               className="gameOverEmoji"
             />
           </div>
           <div>
             <img
               src="https://ik.imagekit.io/sdce03tuc/07%20Grimmace.svg"
-              alt="done"
+              alt="grimacing face"
               className="gameOverEmoji"
             />
           </div>
           <div>
             <img
               src="https://ik.imagekit.io/sdce03tuc/_@2x.svg"
-              alt="done"
+              alt="slightly smiling face"
               className="gameOverEmoji"
             />
           </div>
           <div>
             <img
               src="https://ik.imagekit.io/sdce03tuc/03%20Optimistic.svg"
-              alt="done"
+              alt="grinning face with big eyes"
               className="gameOverEmoji"
             />
           </div>
           <div>
             <img
               src="https://ik.imagekit.io/sdce03tuc/halfteeth.svg"
-              alt="done"
+              alt="grinning face with smiling eyes"
               className="gameOverEmoji"
             />
           </div>
           <div>
             <img
               src="https://ik.imagekit.io/sdce03tuc/05%20Laugh.svg"
-              alt="done"
+              alt="beaming face with smiling eyes"
               className="gameOverEmoji"
             />
           </div>
           <div>
             <img
               src="https://ik.imagekit.io/sdce03tuc/02%20Happy.svg"
-              alt="done"
+              alt="grinning face"
               className="gameOverEmoji"
             />
           </div>
           <div>
             <img
               src="https://ik.imagekit.io/sdce03tuc/_.svg"
-              alt="done"
+              alt="smiling face with sunglasses"
               className="gameOverEmoji"
             />
           </div>
         </div>
-        <div style={lower}>
-          <div style={upper}> </div>
-        </div>
+
+        <Line
+          width="60vw"
+          height="15px"
+          percent={levelNumber > 1 ? levelNumber * 4 : 0}
+          strokeWidth={1}
+          strokeColor="#467aff"
+          className="upper"
+        />
+
         <div className="gameOverEmojis">
           <p>Level 1</p>
           <p>Level 5</p>
           <p>Level 10</p>
           <p>Level 15</p>
         </div>
-        <p className="congrats">Congratulations!</p>
-        <p>You have reached level {level}</p>
+        <h1 className="congrats">Congratulations</h1>
+        <h1>You have reached level {levelNumber}</h1>
         <div>
           <button onClick={replayMatrix} type="button" className="memoryStart">
             Play Again
@@ -236,11 +228,7 @@ const MemoryMatrix = () => {
           <div className="rockRowSpaceDiv">
             <div className="buttonDiv">
               <button className="rockBackBtn" onClick={goToHome} type="button">
-                <img
-                  className="rockArrowImg"
-                  alt="i"
-                  src="https://ik.imagekit.io/sdce03tuc/arrow-left%20(1).svg"
-                />
+                <BiArrowBack className="rockArrowImg" />
                 Back
               </button>
             </div>
@@ -250,7 +238,7 @@ const MemoryMatrix = () => {
             <div>
               <img
                 src="https://ik.imagekit.io/sdce03tuc/memory.svg"
-                alt="memory"
+                alt="memory matrix"
               />
             </div>
             <div className="matrixRulesContainer">
@@ -259,6 +247,12 @@ const MemoryMatrix = () => {
                 <li className="rockLi">
                   In each level, users will see a grid starting at 3x3, with N
                   cells highlighted.
+                </li>
+                <li className="rockLi">
+                  At N seconds, the user can click on any cell. Clicking on a
+                  cell that was highlighted before it will turn blue. Clicking
+                  on the other cells that were not highlighted before then will
+                  turn to red.
                 </li>
                 <li className="rockLi">
                   The highlighted cells will be visible for N seconds, during
@@ -276,6 +270,7 @@ const MemoryMatrix = () => {
                   If all highlighted cells are selected in one attempt, you will
                   move to the next level.
                 </li>
+
                 <li className="rockLi">
                   The game ends if a non-highlighted cell is clicked, taking you
                   to the results page.
@@ -325,17 +320,24 @@ const MemoryMatrix = () => {
                   <h3 className="modalRules">Rules</h3>
                   <div className="modal">
                     <button
+                      data-testid="close"
                       type="button"
                       onClick={closeModal}
                       className="close"
                     >
-                      <IoMdClose />{' '}
+                      <CgClose />{' '}
                     </button>
                   </div>
                   <ul className="rockUl">
                     <li className="modalLi">
                       In each level, users will see a grid starting at 3x3, with
                       N cells highlighted.
+                    </li>
+                    <li className="modalLi">
+                      At N seconds, the user can click on any cell. Clicking on
+                      a cell that was highlighted before it will turn blue.
+                      Clicking on the other cells that were not highlighted
+                      before then will turn to red.
                     </li>
                     <li className="modalLi">
                       The highlighted cells will be visible for N seconds,
@@ -364,7 +366,7 @@ const MemoryMatrix = () => {
           </div>
           <h1 className="memoryHeading">Memory Matrix Game</h1>
           <div className="levelRowSpaceDiv">
-            <h4 className="level">Level: {level}</h4>
+            <p className="level">Level - {levelNumber}</p>
             <h4 className="level">
               Max Level - {maxLevel > 9 ? maxLevel : `0${maxLevel}`}
             </h4>
