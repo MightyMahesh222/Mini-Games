@@ -113,7 +113,7 @@ const CardFlip = props => {
 
   const imageClicked = (name, index) => {
     const newObject = {imgName: name, id: index}
-    setFlipCount(prev => prev + 1)
+    setFlipCount(prev => prev + 0.5)
     setIsSameClicked(prev => [...prev, newObject])
     setShuffledImages(prevImages =>
       prevImages.map(card =>
@@ -159,20 +159,18 @@ const CardFlip = props => {
   }
 
   if (gameOver) {
-    return score < 10 ? (
+    return score === 10 ? (
       <div className="winCardDiv">
         <div>
           <img
             className="wonImageLast"
-            src="https://ik.imagekit.io/sdce03tuc/05%20Pokerface.svg"
-            alt="neutral face"
+            src="https://ik.imagekit.io/sdce03tuc/03%20Optimistic.svg"
+            alt="grinning face with big eyes"
           />
         </div>
-        <h1 className="congratulations">Better luck next time!</h1>
-        <p className="noFlips">No.of Flips - {flipCount}</p>
-        <h1 className="infoMsg">
-          You did not match all of the cards in record time
-        </h1>
+        <h1 className="congratulations">Congratulations</h1>
+        <p className="noFlips">No.of Flips - {Math.floor(flipCount)}</p>
+        <h1 className="infoMsg">You matched all of the cards in record time</h1>
         <div>
           <button onClick={replay} className="wonPlayAgain" type="button">
             Play Again
@@ -184,13 +182,15 @@ const CardFlip = props => {
         <div>
           <img
             className="wonImageLast"
-            src="https://ik.imagekit.io/sdce03tuc/03%20Optimistic.svg"
+            src="https://ik.imagekit.io/sdce03tuc/05%20Pokerface.svg"
             alt="neutral face"
           />
         </div>
-        <p className="congratulations">Congratulations!</p>
-        <p className="noFlips">No.of Flips - {flipCount}</p>
-        <h1 className="infoMsg">You matched all the cards in record time</h1>
+        <h1 className="congratulations">Better luck next time</h1>
+        <p className="noFlips">No.of Flips - {Math.floor(flipCount)}</p>
+        <h1 className="infoMsg">
+          You did not match all of the cards in record time
+        </h1>
         <div>
           <button onClick={replay} className="wonPlayAgain" type="button">
             Play Again
@@ -264,21 +264,17 @@ const CardFlip = props => {
       ) : (
         <div className="cardMainDiv">
           <div>
-            <div className="rockRowSpaceDiv">
-              <div className="buttonDiv">
+            <ul className="rockRowSpaceDiv">
+              <li className="buttonDiv removeDot">
                 <button
                   className="rockBackBtn"
                   onClick={goToRules}
                   type="button"
                 >
-                  <img
-                    className="rockArrowImg"
-                    alt="i"
-                    src="https://ik.imagekit.io/sdce03tuc/arrow-left%20(1).svg"
-                  />
+                  <BiArrowBack className="rockArrowImg" />
                   Back
                 </button>
-              </div>
+              </li>
               <div>
                 <button
                   className="matrixRulesBtn"
@@ -305,7 +301,8 @@ const CardFlip = props => {
                           className="close"
                           data-testid="close"
                         >
-                          <CgClose />{' '}
+                          <CgClose />
+                          Close
                         </button>
                       </div>
                       <ul className="rockUl">
@@ -346,7 +343,7 @@ const CardFlip = props => {
                   </Modal>
                 </>
               </div>
-            </div>
+            </ul>
           </div>
           <div className="specialDiv">
             <h1 className="cardFlipHeading">Card-Flip Memory Game</h1>
@@ -354,18 +351,25 @@ const CardFlip = props => {
               {minutes > 9 ? minutes : `0${minutes}`}:
               {seconds > 9 ? seconds : `0${seconds}`}
             </p>
-            <div className="cardScoreDiv">
-              <p className="cardScore">
-                Card flip count - {flipCount > 9 ? flipCount : `0${flipCount}`}
-              </p>
-              <p className="cardScore">
-                Lowest flip count -{' '}
-                {recordScore > 9 ? recordScore : ` 0${recordScore}`}
-              </p>
-              <p className="cardScore">
-                Score - {score > 9 ? score : ` 0${score}`}
-              </p>
-            </div>
+            <ul className="cardScoreDiv">
+              <li className="cardScore removeDot">
+                <p>
+                  Card flip count -{' '}
+                  {Math.floor(flipCount) > 9
+                    ? Math.floor(flipCount)
+                    : `0${Math.floor(flipCount)}`}
+                </p>
+              </li>
+              <li className="cardScore removeDot">
+                <p>
+                  Lowest flip count -{' '}
+                  {recordScore > 9 ? recordScore : ` 0${recordScore}`}
+                </p>
+              </li>
+              <li className="cardScore removeDot">
+                <p> Score - {score > 9 ? score : ` 0${score}`}</p>
+              </li>
+            </ul>
           </div>
           <div className="cardsContainer">
             {shuffledImages.map(every => (
@@ -389,7 +393,7 @@ const CardFlip = props => {
                   <div className="front">
                     <img
                       className="cardImage"
-                      alt="images"
+                      alt={every.name}
                       src="https://ik.imagekit.io/sdce03tuc/foot-print%201.svg"
                     />
                   </div>

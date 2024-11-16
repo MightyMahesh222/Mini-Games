@@ -221,17 +221,18 @@ const EmojiGamePage = props => {
 
           <ul className="emojisDiv">
             {myEmojis.map(every => (
-              <li
-                key={every.id}
-                onClick={() => addToClickedEmojis(every.id)}
-                type="button"
-                className="emojiDiv"
-              >
-                <img
-                  className="emoji"
-                  alt={every.emojiName}
-                  src={every.emojiUrl}
-                />
+              <li className="removeDot" key={every.id}>
+                <button
+                  onClick={() => addToClickedEmojis(every.id)}
+                  type="button"
+                  className="emojiDiv"
+                >
+                  <img
+                    className="emoji"
+                    alt={every.emojiName}
+                    src={every.emojiUrl}
+                  />
+                </button>
               </li>
             ))}
           </ul>

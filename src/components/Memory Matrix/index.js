@@ -3,7 +3,7 @@ import {useState, useEffect, useCallback} from 'react'
 import {Redirect} from 'react-router-dom'
 import {BiArrowBack} from 'react-icons/bi'
 import {CgClose} from 'react-icons/cg'
-import {Line} from 'rc-progress'
+import MemoryGameOver from './MemoryGameOver'
 
 import './index.css'
 
@@ -134,91 +134,7 @@ const MemoryMatrix = () => {
   }
 
   if (gameOver) {
-    return (
-      <div className="gameOver">
-        <div className="gameOverEmojis">
-          <div>
-            <img
-              src="https://ik.imagekit.io/sdce03tuc/05%20Pokerface.svg"
-              alt="neutral face"
-              className="gameOverEmoji"
-            />
-          </div>
-          <div>
-            <img
-              src="https://ik.imagekit.io/sdce03tuc/07%20Grimmace.svg"
-              alt="grimacing face"
-              className="gameOverEmoji"
-            />
-          </div>
-          <div>
-            <img
-              src="https://ik.imagekit.io/sdce03tuc/_@2x.svg"
-              alt="slightly smiling face"
-              className="gameOverEmoji"
-            />
-          </div>
-          <div>
-            <img
-              src="https://ik.imagekit.io/sdce03tuc/03%20Optimistic.svg"
-              alt="grinning face with big eyes"
-              className="gameOverEmoji"
-            />
-          </div>
-          <div>
-            <img
-              src="https://ik.imagekit.io/sdce03tuc/halfteeth.svg"
-              alt="grinning face with smiling eyes"
-              className="gameOverEmoji"
-            />
-          </div>
-          <div>
-            <img
-              src="https://ik.imagekit.io/sdce03tuc/05%20Laugh.svg"
-              alt="beaming face with smiling eyes"
-              className="gameOverEmoji"
-            />
-          </div>
-          <div>
-            <img
-              src="https://ik.imagekit.io/sdce03tuc/02%20Happy.svg"
-              alt="grinning face"
-              className="gameOverEmoji"
-            />
-          </div>
-          <div>
-            <img
-              src="https://ik.imagekit.io/sdce03tuc/_.svg"
-              alt="smiling face with sunglasses"
-              className="gameOverEmoji"
-            />
-          </div>
-        </div>
-
-        <Line
-          width="60vw"
-          height="15px"
-          percent={levelNumber > 1 ? levelNumber * 4 : 0}
-          strokeWidth={1}
-          strokeColor="#467aff"
-          className="upper"
-        />
-
-        <div className="gameOverEmojis">
-          <p>Level 1</p>
-          <p>Level 5</p>
-          <p>Level 10</p>
-          <p>Level 15</p>
-        </div>
-        <h1 className="congrats">Congratulations</h1>
-        <h1>You have reached level {levelNumber}</h1>
-        <div>
-          <button onClick={replayMatrix} type="button" className="memoryStart">
-            Play Again
-          </button>
-        </div>
-      </div>
-    )
+    return <MemoryGameOver level={levelNumber} replay={replayMatrix} />
   }
 
   return (

@@ -11,7 +11,7 @@ const Header = props => {
           alt="emoji logo"
           src="https://ik.imagekit.io/sdce03tuc/wink%201.jpg"
         />
-        <p className="emojiName">Emoji Game</p>
+        <h1 className="emojiName">Emoji Game</h1>
       </div>
       {!gameOver && (
         <div className="scoreDiv">

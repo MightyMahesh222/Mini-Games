@@ -31,7 +31,7 @@ const RockPaper = props => {
           </div>
           <div className="rockRulesDiv">
             <div>
-              <h2 className="rockPaperHeading">ROCK PAPER SCISSOR</h2>
+              <h1 className="rockPaperHeading">Rock Paper Scissor</h1>
               <img
                 className="rockRulesImage"
                 alt="rock paper scissor"
@@ -87,7 +87,7 @@ const RockPaper = props => {
                 </li>
                 <li className="rockLi">
                   When the result is IT IS LOSE, then the count of the score
-                  should be decremented by 1
+                  should be decremented by 1.
                 </li>
               </ul>
               <button

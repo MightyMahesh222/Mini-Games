@@ -392,6 +392,6 @@
   margin-bottom: 19px;
 }
 
-li {
+.removeDot {
   list-style-type: none;
 }

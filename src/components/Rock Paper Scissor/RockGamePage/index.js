@@ -31,7 +31,6 @@ const RockGamePage = props => {
   const goToRules = () => {
     setIsTrue(false)
   }
-  console.log(userPick, randomPick)
   const userClicked = pick => {
     setUserPick(pick)
     setRandomPick(Math.floor(Math.random() * choicesList.length))
@@ -58,6 +57,7 @@ const RockGamePage = props => {
         setScore(prev => prev + 1)
       } else {
         setIsWon('LOSE')
+        setScore(prev => prev - 1)
       }
     }
   }, [userPick, randomPick])
@@ -78,7 +78,7 @@ const RockGamePage = props => {
     emoji = 'https://ik.imagekit.io/sdce03tuc/Emoji%20(2).svg'
     winorlose = 'YOU LOSE'
     girlAlt = 'lose emoji'
-    alt = 'Face without mouth'
+    alt = 'Frowning Face'
     girlReaction = 'https://ik.imagekit.io/sdce03tuc/Group%207618%20(2).svg'
   } else {
     emoji = 'https://ik.imagekit.io/sdce03tuc/Emoji%20(1).svg'
@@ -134,48 +134,49 @@ const RockGamePage = props => {
                   choices
                 </li>
                 <li className="modalLi">
-                  When the user choice is rock and his opponent choice is rock
-                  then the result will be<span> IT IS DRAW</span>
-                </li>
-                <li className="modalLi">
-                  When the user choice is paper and his opponent choice is rock
-                  then the result will be <span>YOU WON</span>
-                </li>
-                <li className="modalLi">
-                  When the user choice is a scissor and his opponent choice is
-                  rock then the result will be <span>YOU LOSE</span>
-                </li>
-                <li className="modalLi">
-                  When the user choice is paper and his opponent choice is paper
-                  then the result will be <span>IT IS DRAW</span>
-                </li>
-                <li className="modalLi">
-                  When the user choice is scissors and his opponent choice is
-                  paper then the result will be <span>YOU WON</span>
-                </li>
-                <li className="modalLi">
                   When the user choice is rock and his opponent choice is
                   scissors then the result will be<span> YOU WON</span>
+                </li>
+                <li className="modalLi">
+                  When the user choice is rock and his opponent choice is rock
+                  then the result will be<span> IT IS DRAW</span>
                 </li>
                 <li className="modalLi">
                   When the user choice is paper and his opponent choice is
                   scissors then the result will be <span>YOU LOSE</span>
                 </li>
                 <li className="modalLi">
+                  When the user choice is paper and his opponent choice is rock
+                  then the result will be <span>YOU WON</span>
+                </li>
+                <li className="modalLi">
                   When the user choice is scissors and his opponent choice is
                   scissors then the result will be <span>IT IS DRAW</span>
                 </li>
                 <li className="modalLi">
-                  When the result is YOU WON, then the count of the score should
-                  be incremented by 1
+                  When the user choice is a scissor and his opponent choice is
+                  rock then the result will be <span>YOU LOSE</span>
                 </li>
                 <li className="modalLi">
-                  When the result is IT IS DRAW, then the count of the score
-                  should be the same
+                  When the result is <span>YOU WON</span>, then the count of the
+                  score should be incremented by 1
                 </li>
                 <li className="modalLi">
-                  When the result is IT IS DRAW, then the count of the score
-                  should be the same
+                  When the user choice is paper and his opponent choice is paper
+                  then the result will be <span>IT IS DRAW</span>
+                </li>
+                <li className="modalLi">
+                  When the result is <span>IT IS DRAW</span>, then the count of
+                  the score should be the same
+                </li>
+                <li className="modalLi">
+                  When the user choice is scissors and his opponent choice is
+                  paper then the result will be <span>YOU WON</span>
+                </li>
+
+                <li className="modalLi">
+                  When the result is <span>YOU LOSE</span>, then the count of
+                  the score should be decremented by 1.
                 </li>
               </ul>
             </div>
@@ -202,6 +203,7 @@ const RockGamePage = props => {
   ) : (
     <div className="rockResultDiv">
       <h1 className="rockPaperHeading">Rock Paper Scissor</h1>
+
       <div className="rockScoreDiv">
         <div>
           <p className="rockHeading">Rock</p>
@@ -216,6 +218,8 @@ const RockGamePage = props => {
           <p className="rockScore">{score}</p>
         </div>
       </div>
+      <h1 className="rockPaperHeading">Rock Paper Scissor</h1>
+
       <div className="rockResultContainer">
         <div className="rockColumnDiv">
           <p>You</p>
@@ -240,7 +244,7 @@ const RockGamePage = props => {
           <p>Opponent</p>
           <img
             className="rockImage"
-            alt="done"
+            alt={choicesList[randomPick].id}
             src={choicesList[randomPick].imageUrl}
           />
         </div>
