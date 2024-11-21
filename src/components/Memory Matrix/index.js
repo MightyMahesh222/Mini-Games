@@ -108,7 +108,7 @@ const MemoryMatrix = () => {
       <div
         key={`cell-${index}`}
         role="button"
-        data-test-id="highlighted"
+        data-test-id="notHighlighted"
         disabled={isCorrect}
         tabIndex={0}
         onClick={() => handleCellClick(index)}
@@ -158,11 +158,13 @@ const MemoryMatrix = () => {
               />
             </div>
             <div className="matrixRulesContainer">
-              <h4 className="rockRulesHeading">Rules</h4>
+              <h1 className="rockRulesHeading">Rules</h1>
               <ul className="rockUl">
                 <li className="rockLi">
-                  In each level, users will see a grid starting at 3x3, with N
-                  cells highlighted.
+                  In each level of the Game, Users should be able to see the
+                  Grid with (N X N) size starting from 3 and the grid will
+                  highlight N cells in Blue, the N highlighted cells will be
+                  picked randomly.
                 </li>
                 <li className="rockLi">
                   At N seconds, the user can click on any cell. Clicking on a
@@ -171,25 +173,26 @@ const MemoryMatrix = () => {
                   turn to red.
                 </li>
                 <li className="rockLi">
-                  The highlighted cells will be visible for N seconds, during
-                  which no action can be performed.
+                  The highlighted cells will remain N seconds for the user to
+                  memorize the cells. At this point, the user should not be able
+                  to perform any action.
                 </li>
                 <li className="rockLi">
-                  After N seconds, the grid will hide the highlighted cells,
-                  allowing you to select them.
+                  The user should be promoted to the next level if they guess
+                  all N cells correctly in one attempt.
                 </li>
                 <li className="rockLi">
-                  Clicking on a previously highlighted cell will turn it blue;
-                  clicking elsewhere will turn it red.
+                  The user should be promoted to the next level if they guess
+                  all N cells correctly in one attempt.
                 </li>
                 <li className="rockLi">
-                  If all highlighted cells are selected in one attempt, you will
-                  move to the next level.
+                  The user should be taken to the results page if the user
+                  clicks on the wrong cell.
                 </li>
 
                 <li className="rockLi">
-                  The game ends if a non-highlighted cell is clicked, taking you
-                  to the results page.
+                  If the user completed all the levels, then the user should be
+                  taken to the results page.
                 </li>
               </ul>
               <div>
@@ -280,21 +283,25 @@ const MemoryMatrix = () => {
               </div>
             </div>
           </div>
-          <h1 className="memoryHeading">Memory Matrix Game</h1>
-          <div className="levelRowSpaceDiv">
-            <p className="level">Level - {levelNumber}</p>
-            <h4 className="level">
-              Max Level - {maxLevel > 9 ? maxLevel : `0${maxLevel}`}
-            </h4>
-          </div>
+          <h1 className="memoryHeading">Memory Matrix</h1>
+          <ul className="levelRowSpaceDiv">
+            <li className="removeDot">
+              <p className="level">Level - {levelNumber}</p>
+            </li>
+            <li className="removeDot">
+              <h4 className="level">
+                Max Level - {maxLevel > 9 ? maxLevel : `0${maxLevel}`}
+              </h4>
+            </li>
+          </ul>
 
           <div
             className="grid"
             style={{gridTemplateColumns: `repeat(${gridSize}, 1fr)`}}
           >
-            {Array.from({length: gridSize * gridSize}).map((_, index) =>
-              renderCell(index),
-            )}
+            {Array.from({
+              length: gridSize * gridSize,
+            }).map((_, index) => renderCell(index))}
           </div>
 
           {message && <p className="message">{message}</p>}

@@ -41,7 +41,7 @@ const MemoryGameOver = props => {
       <div className="gameOverEmojis">
         {emojisArray.map(every => (
           <div key={every.id}>
-            <img src={every.img} alt={every.id} className="gameOverEmoji" />
+            <img src={every.img} alt={every} className="gameOverEmoji" />
           </div>
         ))}
       </div>
@@ -49,7 +49,7 @@ const MemoryGameOver = props => {
       <Line
         width="60vw"
         height="15px"
-        percent={level > 1 ? level * 4 : 0}
+        percent={((level - 1) / 14) * 100}
         strokeWidth={1}
         strokeColor="#467aff"
         className="upper"
@@ -62,7 +62,7 @@ const MemoryGameOver = props => {
         <p>Level 15</p>
       </div>
       <h1 className="congrats">Congratulations</h1>
-      <h1>You have reached level {level}</h1>
+      <h1>You have reached level {level - 1}</h1>
       <div>
         <button onClick={replayed} type="button" className="memoryStart">
           Play Again

@@ -125,7 +125,7 @@ const RockGamePage = props => {
                   onClick={closeModal}
                   className="close"
                 >
-                  <CgClose />{' '}
+                  <CgClose size={24} />{' '}
                 </button>
               </div>
               <ul className="rockUl">

@@ -37,10 +37,12 @@ const CardFlip = props => {
   const closeModal = useCallback(() => setIsOpen(false), [])
 
   if (score === 10 && flipCount < recordScore) {
-    localStorage.setItem('recordTime', flipCount)
+    localStorage.setItem('recordTime', Math.floor(flipCount / 2))
   } else if (score === 10 && recordScore === 0) {
-    localStorage.setItem('recordTime', flipCount)
+    localStorage.setItem('recordTime', Math.floor(flipCount / 2))
   }
+
+  console.log(shuffledImages)
 
   useEffect(() => {
     let intervalId
@@ -66,12 +68,15 @@ const CardFlip = props => {
 
   useEffect(() => {
     const duplicatedImages = [...cardsList, ...cardsList].map(
-      (every, index) => ({
-        ...every,
-        unqId: index,
-        isActive: false,
-        isMatched: false,
-      }),
+      (every, index) => {
+        console.log(index)
+        return {
+          ...every,
+          unqId: index,
+          isActive: false,
+          isMatched: false,
+        }
+      },
     )
     const shuffled = duplicatedImages.sort(() => Math.random() - 0.5)
     setShuffledImages(shuffled)
@@ -113,7 +118,9 @@ const CardFlip = props => {
 
   const imageClicked = (name, index) => {
     const newObject = {imgName: name, id: index}
-    setFlipCount(prev => prev + 0.5)
+
+    setFlipCount(prev => prev + 1)
+
     setIsSameClicked(prev => [...prev, newObject])
     setShuffledImages(prevImages =>
       prevImages.map(card =>
@@ -169,7 +176,7 @@ const CardFlip = props => {
           />
         </div>
         <h1 className="congratulations">Congratulations</h1>
-        <p className="noFlips">No.of Flips - {Math.floor(flipCount)}</p>
+        <p className="noFlips">No.of Flips - {Math.floor(flipCount / 2)}</p>
         <h1 className="infoMsg">You matched all of the cards in record time</h1>
         <div>
           <button onClick={replay} className="wonPlayAgain" type="button">
@@ -187,7 +194,7 @@ const CardFlip = props => {
           />
         </div>
         <h1 className="congratulations">Better luck next time</h1>
-        <p className="noFlips">No.of Flips - {Math.floor(flipCount)}</p>
+        <p className="noFlips">No.of Flips - {Math.floor(flipCount / 2)}</p>
         <h1 className="infoMsg">
           You did not match all of the cards in record time
         </h1>
@@ -221,7 +228,7 @@ const CardFlip = props => {
           </div>
           <div className="rulesPadding">
             <div className="matrixRulesContainer">
-              <h2 className="rockRulesHeading">Rules</h2>
+              <h1 className="rockRulesHeading">Rules</h1>
               <ul className="rockUl">
                 <li className="rockLi">
                   When the game is started, the users should be able to see the
@@ -311,11 +318,9 @@ const CardFlip = props => {
                           see the list of Cards that are shuffled and turned
                           face down.
                         </li>
-
                         <li className="modalLi">
-                          If the two cards have the same image, they remain face
-                          up. If not, they should be flipped face down again
-                          after a short 2 seconds
+                          Users should be able to compare only two cards at a
+                          time.
                         </li>
                         <li className="modalLi">
                           When a user starts the game, the user should be able
@@ -327,16 +332,18 @@ const CardFlip = props => {
                           to the Time Up Page.
                         </li>
                         <li className="modalLi">
+                          The Timer starts from 2 Minutes.
+                        </li>
+                        <li className="modalLi">
+                          If the two cards have the same image, they remain face
+                          up. If not, they should be flipped face down again
+                          after a short 2 seconds
+                        </li>
+
+                        <li className="modalLi">
                           If the user finds all the matching cards before the
                           timer ends, then the user should be redirected to the
                           results page.
-                        </li>
-                        <li className="modalLi">
-                          The Timer starts from 2 Minutes.{' '}
-                        </li>
-                        <li className="modalLi">
-                          Users should be able to compare only two cards at a
-                          time.
                         </li>
                       </ul>
                     </div>
@@ -355,9 +362,9 @@ const CardFlip = props => {
               <li className="cardScore removeDot">
                 <p>
                   Card flip count -{' '}
-                  {Math.floor(flipCount) > 9
-                    ? Math.floor(flipCount)
-                    : `0${Math.floor(flipCount)}`}
+                  {Math.floor(flipCount / 2) > 9
+                    ? Math.floor(flipCount / 2)
+                    : `0${Math.floor(flipCount / 2)}`}
                 </p>
               </li>
               <li className="cardScore removeDot">
@@ -373,32 +380,34 @@ const CardFlip = props => {
           </div>
           <div className="cardsContainer">
             {shuffledImages.map(every => (
-              <div key={every.unqId}>
-                <button
-                  data-testid={every.name}
-                  disabled={every.isMatched}
-                  type="button"
-                  className={`cardDiv ${every.isActive ? 'flipped' : ''}`}
-                  onClick={() => {
-                    imageClicked(every.name, every.unqId)
-                  }}
-                >
-                  <div className="back">
-                    <img
-                      className="cardImage"
-                      alt={every.name}
-                      src={every.image}
-                    />
-                  </div>
-                  <div className="front">
-                    <img
-                      className="cardImage"
-                      alt={every.name}
-                      src="https://ik.imagekit.io/sdce03tuc/foot-print%201.svg"
-                    />
-                  </div>
-                </button>
-              </div>
+              <ul key={every.unqId}>
+                <li className="removeDot">
+                  <button
+                    data-testid={every.name}
+                    disabled={every.isMatched}
+                    type="button"
+                    className={`cardDiv ${every.isActive ? 'flipped' : ''}`}
+                    onClick={() => {
+                      imageClicked(every.name, every.unqId)
+                    }}
+                  >
+                    <div className="back">
+                      <img
+                        className="cardImage"
+                        alt={every.name}
+                        src={every.image}
+                      />
+                    </div>
+                    <div className="front">
+                      <img
+                        className="cardImage"
+                        alt={every.name}
+                        src="https://ik.imagekit.io/sdce03tuc/foot-print%201.svg"
+                      />
+                    </div>
+                  </button>
+                </li>
+              </ul>
             ))}
           </div>
         </div>
