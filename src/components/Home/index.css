@@ -1,0 +1,92 @@
+.homeDiv {
+  background-image: linear-gradient(117.3deg, #834d9b 2.24%, #d04ed6 173.83%);
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
+@media (max-width: 480px) {
+  .gameImageDiv {
+    width: 80vw;
+  }
+  .emojiImg {
+    width: 50%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 900px) {
+  .gameImageDiv {
+    width: 40vw;
+    min-height: 180px;
+  }
+  .emojiImg {
+    width: 50%;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  .gameImageDiv {
+    width: 35vw;
+    min-height: 200px;
+  }
+  .emojiImg {
+    width: 45%;
+  }
+}
+
+@media (min-width: 1101px) {
+  .gameImageDiv {
+    width: 35vw;
+    min-height: 250px;
+  }
+
+  .emojiImg {
+    width: 40%;
+  }
+}
+
+.gamesHeading {
+  top: 96px;
+  left: 644px;
+  gap: 0px;
+  font-family: Roboto;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56.25px;
+  text-align: center;
+  color: #f8fafc;
+}
+
+.gamesPreviewDiv {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 0px 30px;
+  justify-content: center;
+}
+
+.gameImageDiv {
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.emojiImgAnimal {
+  height: 120%;
+  width: 75%;
+}
+
+.memoryMatrixHeading {
+  font-family: 'Bree Serif';
+  font-size: 17px;
+  padding-top: 5px;
+  margin: 0px;
+}
+
+.homeLi {
+  list-style-type: none;
+}

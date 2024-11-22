@@ -1,0 +1,242 @@
+.emojiPageMainDiv {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 20px;
+  background: linear-gradient(179.51deg, #9796f0 0.41%, #fbc7d4 128.48%);
+}
+
+@media (max-width: 480px) {
+  .rockGameChooseDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70vw;
+    flex-wrap: wrap;
+  }
+
+  .rockImage {
+    width: 25vw;
+  }
+  .rockScoreDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    width: 90vw;
+    padding: 5px 15px;
+    margin-top: 20px;
+  }
+  .rockResultContainer {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-family: 'Bree serif';
+  }
+}
+
+@media (min-width: 480px) and (max-width: 800px) {
+  .rockGameChooseDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60vw;
+    flex-wrap: wrap;
+  }
+
+  .rockImage {
+    width: 20vw;
+  }
+  .rockScoreDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    width: 80vw;
+    padding: 5px 15px;
+    margin-top: 20px;
+  }
+  .rockResultContainer {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-family: 'Bree serif';
+  }
+}
+
+@media (min-width: 800px) {
+  .rockGameChooseDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40vw;
+    flex-wrap: wrap;
+  }
+
+  .rockImage {
+    width: 13vw;
+  }
+  .rockScoreDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    width: 60vw;
+    padding: 5px 15px;
+    margin-top: 20px;
+    min-height: 150px;
+  }
+  .rockResultContainer {
+    display: flex;
+    flex-direction: row;
+    width: 60vw;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-family: 'Bree serif';
+  }
+}
+
+.finalScore {
+  font-family: Roboto;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  color: #523fff;
+  margin-bottom: 10px;
+  margin: 0px;
+}
+
+.playAgain {
+  background: #ffce27;
+  padding: 7px 15px;
+  border-radius: 4px;
+  border: none;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.scoreDetails {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.backButtonDiv {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.rockRowSpaceDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0px;
+  width: 85vw;
+}
+
+.rockRulesBtn {
+  background-color: transparent;
+  border-radius: 5px;
+  font-family: 'Roboto';
+  padding: 3px 8px;
+  border-color: aliceblue;
+  color: #ffffff;
+}
+
+.rockGamePageDiv {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vw;
+  flex-direction: column;
+}
+
+.imageBtn {
+  flex-direction: row;
+  display: flex;
+  background-color: transparent;
+  border-radius: 50%;
+  border: none;
+  margin: 10px;
+}
+
+.rockResultDiv {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 30px;
+  justify-content: center;
+}
+
+.rockColumnDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rockPlayAgainBtn {
+  padding: 7px 23px;
+  border-radius: 10px;
+  font-family: 'Bree serif';
+}
+
+.rockEmoji {
+  margin: 0px;
+  padding: 0px;
+  font-size: 20px;
+}
+
+.youWon {
+  margin: 10px;
+}
+
+.girlReaction {
+  height: 100px;
+}
+
+.rockHeading {
+  font-size: 18px;
+  margin: 8px;
+  font-family: Bree serif;
+}
+
+.scoreDetailsDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  width: 100px;
+  flex-direction: column;
+  padding: 20px;
+  margin: 10px;
+}
+
+.rockScore {
+  font-size: 30px;
+  color: #334155;
+  margin: 0px;
+  font-weight: 600;
+}
+
+.rockScoreHeading {
+  color: #334155;
+  font-size: 16px;
+  font-family: 'Bree serif';
+  margin: 0px;
+}

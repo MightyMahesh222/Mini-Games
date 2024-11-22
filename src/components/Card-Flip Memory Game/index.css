@@ -1,0 +1,497 @@
+.cardMainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 1000px;
+  background-color: #14332e;
+  min-height: 100vh;
+  padding-top: 10px;
+}
+
+@media (max-width: 480px) {
+  .cardFlipHeading {
+    font-size: 20px;
+    color: aliceblue;
+    margin: 0px;
+    text-align: center;
+  }
+  .cardTimer {
+    text-align: center;
+    color: aliceblue;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .cardScore {
+    margin: 4px;
+    font-weight: 600;
+    font-size: 11px;
+  }
+  .cardScoreDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: aliceblue;
+    width: 78vw;
+    margin: 0px;
+  }
+
+  .cardDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 3px solid #ffffff30;
+    margin: 5px;
+    border-radius: 10px;
+    transform-style: preserve-3d;
+    transition: 1s;
+    height: 60px;
+    min-width: 60px;
+    flex-shrink: 1;
+    background-color: #a7f3d080;
+  }
+
+  .cardImage {
+    height: 40px;
+    width: 40px;
+  }
+  .cardsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #154315;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 2px solid rgb(49, 68, 49);
+    margin: 10px 60px;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 40px;
+  }
+
+  .wonImageLast {
+    height: 70px;
+  }
+  .congratulations {
+    font-size: 25px;
+    font-weight: 400;
+    text-align: left;
+    color: #4ade80;
+    margin: 0px;
+  }
+  .noFlips {
+    font-size: 14px;
+    margin: 17px;
+  }
+
+  .infoMsg {
+    font-size: 15px;
+    margin: 0px;
+  }
+  .rulesPadding {
+    padding: 40px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 800px) {
+  .cardFlipHeading {
+    font-size: 22px;
+    color: aliceblue;
+    margin: 0px;
+    text-align: center;
+  }
+  .cardTimer {
+    text-align: center;
+    color: aliceblue;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .cardScore {
+    margin: 4px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .cardDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 3px solid #ffffff30;
+    margin: 8px;
+    border-radius: 10px;
+    transform-style: preserve-3d;
+    transition: 1s;
+    height: 90px;
+    min-width: 90px;
+    background-color: #a7f3d080;
+  }
+
+  .cardImage {
+    height: 60px;
+    width: 60px;
+  }
+  .cardsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #154315;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 2px solid rgb(49, 68, 49);
+    margin: 10px 60px;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 40px;
+  }
+  .cardScoreDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: aliceblue;
+    width: 78vw;
+    margin: 0px;
+  }
+  .wonImageLast {
+    height: 90px;
+  }
+  .congratulations {
+    font-size: 27px;
+    font-weight: 400;
+    text-align: left;
+    color: #4ade80;
+    margin: 0px;
+  }
+  .noFlips {
+    font-size: 17px;
+    margin: 17px;
+  }
+
+  .infoMsg {
+    font-size: 17px;
+    margin: 0px;
+  }
+  .rulesPadding {
+    padding: 40px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1000px) {
+  .cardFlipHeading {
+    font-size: 24px;
+    color: aliceblue;
+    margin: 0px;
+    text-align: center;
+  }
+  .cardTimer {
+    text-align: center;
+    color: aliceblue;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .cardScore {
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .cardDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 3px solid #ffffff30;
+    margin: 8px;
+    border-radius: 10px;
+    transform-style: preserve-3d;
+    transition: 1s;
+    height: 100px;
+    min-width: 100px;
+    background-color: #a7f3d080;
+  }
+
+  .cardImage {
+    height: 70px;
+    width: 70px;
+  }
+  .cardsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #154315;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 2px solid rgb(49, 68, 49);
+    margin: 10px 60px;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 40px;
+    width: 70vw;
+  }
+  .specialDiv {
+    width: 70vw;
+  }
+  .cardScoreDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: aliceblue;
+    width: 70vw;
+    margin: 0px;
+  }
+
+  .wonImageLast {
+    height: 90px;
+  }
+  .congratulations {
+    font-size: 27px;
+    font-weight: 400;
+    text-align: left;
+    color: #4ade80;
+    margin: 0px;
+  }
+  .noFlips {
+    font-size: 16px;
+    margin: 17px;
+  }
+
+  .infoMsg {
+    font-size: 17px;
+    margin: 0px;
+  }
+  .rulesPadding {
+    padding: 60px;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1400px) {
+  .cardFlipHeading {
+    font-size: 25px;
+    color: aliceblue;
+    margin: 0px;
+    text-align: center;
+  }
+  .cardTimer {
+    text-align: center;
+    color: aliceblue;
+    font-size: 23px;
+    font-weight: 600;
+  }
+  .cardScore {
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .cardDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 3px solid #ffffff30;
+    margin: 8px;
+    border-radius: 10px;
+    transform-style: preserve-3d;
+    transition: 1s;
+    height: 110px;
+    min-width: 110px;
+    background-color: #a7f3d080;
+  }
+
+  .cardImage {
+    height: 80px;
+    width: 80px;
+  }
+  .cardsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #154315;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 2px solid rgb(49, 68, 49);
+    margin: 10px 60px;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 40px;
+    width: 60vw;
+  }
+  .specialDiv {
+    width: 60vw;
+  }
+  .cardScoreDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: aliceblue;
+    width: 60vw;
+    margin: 0px;
+  }
+  .wonImageLast {
+    height: 100px;
+  }
+  .congratulations {
+    font-size: 30px;
+    font-weight: 400;
+    text-align: left;
+    color: #4ade80;
+    margin: 0px;
+  }
+  .noFlips {
+    font-size: 18px;
+    margin: 17px;
+  }
+
+  .infoMsg {
+    font-size: 19px;
+    margin: 0px;
+  }
+  .rulesPadding {
+    padding: 70px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .cardFlipHeading {
+    font-size: 25px;
+    color: aliceblue;
+    margin: 0px;
+    text-align: center;
+  }
+  .cardTimer {
+    text-align: center;
+    color: aliceblue;
+    font-size: 23px;
+    font-weight: 600;
+  }
+  .cardScore {
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .cardDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 3px solid #ffffff30;
+    margin: 10px;
+    border-radius: 10px;
+    transform-style: preserve-3d;
+    transition: 1s;
+    height: 110px;
+    min-width: 110px;
+    background-color: #a7f3d080;
+  }
+
+  .cardImage {
+    height: 80px;
+    width: 80px;
+  }
+  .cardsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #154315;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 2px solid rgb(49, 68, 49);
+    margin: 10px 60px;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 40px;
+    width: 50vw;
+  }
+  .specialDiv {
+    width: 50vw;
+  }
+  .cardScoreDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: aliceblue;
+    width: 50vw;
+    margin: 0px;
+  }
+  .wonImageLast {
+    height: 120px;
+  }
+  .congratulations {
+    font-size: 33px;
+    font-weight: 400;
+    text-align: left;
+    color: #4ade80;
+    margin: 0px;
+  }
+  .noFlips {
+    font-size: 22px;
+    margin: 17px;
+  }
+
+  .infoMsg {
+    font-size: 21px;
+    margin: 0px;
+  }
+  .rulesPadding {
+    padding: 40px 120px;
+  }
+}
+
+.front,
+.back {
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  color: rgb(0, 0, 0);
+  position: absolute;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.front {
+  transform: rotateY(0deg);
+}
+
+.flipped {
+  transform: rotateY(180deg);
+  background-color: rgb(255, 255, 255);
+  border: 3px solid #08ff12;
+}
+
+.animalCardRulesDiv {
+  display: flex;
+  align-items: center;
+  background-color: #14332e;
+  min-height: 100vh;
+  width: 100vw;
+  justify-content: flex-start;
+  align-self: center;
+  flex-direction: column;
+}
+
+.animalsImage {
+  width: 50vw;
+  max-width: 400px;
+}
+
+.winCardDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  perspective: 1000px;
+  background-color: #14332e;
+  justify-content: center;
+  min-height: 100vh;
+  color: aliceblue;
+  font-family: Bree Serif;
+}
+
+.wonPlayAgain {
+  border-radius: 10px;
+  padding: 8px 14px;
+  margin: 20px;
+  font-family: Bree Serif;
+}

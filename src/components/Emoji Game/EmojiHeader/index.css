@@ -1,0 +1,138 @@
+.emojiHeaderDiv {
+  backdrop-filter: blur(20px);
+  background: #ffffff33;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  height: 70px;
+  align-items: center;
+}
+
+@media (max-width: 480px) {
+  .emojiHeaderDiv {
+    padding: 0px 20px;
+  }
+  .emojiHeaderImg {
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    align-self: center;
+    margin-right: 10px;
+  }
+  .emojiName {
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 28.13px;
+    text-align: left;
+    margin: 0px;
+  }
+  .topScore {
+    font-family: 'Roboto';
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 26px;
+    text-align: left;
+    margin-left: 20px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 700px) {
+  .emojiHeaderDiv {
+    padding: 0px 60px;
+  }
+  .emojiHeaderImg {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    align-self: center;
+    margin-right: 10px;
+  }
+  .emojiName {
+    font-family: 'Roboto';
+    font-size: 18px;
+    font-weight: 700;
+    text-align: left;
+  }
+  .topScore {
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 26px;
+    text-align: left;
+    margin-left: 20px;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1100px) {
+  .emojiHeaderDiv {
+    padding: 0px 100px;
+  }
+  .emojiHeaderImg {
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    display: flex;
+    align-self: center;
+    margin-right: 10px;
+  }
+  .emojiName {
+    font-family: 'Roboto';
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .topScore {
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
+    text-align: left;
+    margin-left: 20px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .emojiHeaderDiv {
+    padding: 0px 100px;
+  }
+  .emojiHeaderImg {
+    border-radius: 50%;
+    height: 55px;
+    width: 55px;
+    display: flex;
+    align-self: center;
+    margin-right: 10px;
+  }
+  .emojiName {
+    font-family: 'Roboto';
+    font-size: 24px;
+    font-weight: 700;
+    text-align: left;
+  }
+  .topScore {
+    font-family: 'Roboto';
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 26px;
+    text-align: left;
+    margin-left: 20px;
+  }
+}
+
+.scoreDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.emojiHeaderHeading {
+  font-family: 'Roboto';
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28.13px;
+  text-align: left;
+  background: #334155;
+}
