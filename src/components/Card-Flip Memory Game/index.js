@@ -178,6 +178,7 @@ const CardFlip = props => {
         <h1 className="congratulations">Congratulations</h1>
         <p className="noFlips">No.of Flips - {Math.floor(flipCount / 2)}</p>
         <h1 className="infoMsg">You matched all of the cards in record time</h1>
+
         <div>
           <button onClick={replay} className="wonPlayAgain" type="button">
             Play Again

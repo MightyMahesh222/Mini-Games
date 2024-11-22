@@ -10,7 +10,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> c81ba9b6c624064336080f16493007a431d12ba2
 button {
   cursor: pointer;
 }
