@@ -108,8 +108,10 @@ const MemoryMatrix = () => {
       <div
         key={`cell-${index}`}
         role="button"
-        data-test-id="notHighlighted"
-        disabled={isCorrect}
+        data-testid={
+          showGrid && isHighlighted ? 'highlighted' : 'notHighlighted'
+        }
+        disabled={showGrid}
         tabIndex={0}
         onClick={() => handleCellClick(index)}
         className={cellClassNames}
@@ -161,38 +163,31 @@ const MemoryMatrix = () => {
               <h1 className="rockRulesHeading">Rules</h1>
               <ul className="rockUl">
                 <li className="rockLi">
-                  In each level of the Game, Users should be able to see the
-                  Grid with (N X N) size starting from 3 and the grid will
-                  highlight N cells in Blue, the N highlighted cells will be
-                  picked randomly.
+                  The game starts with a 3x3 grid, and the grid size increases
+                  with each level.
                 </li>
                 <li className="rockLi">
-                  At N seconds, the user can click on any cell. Clicking on a
-                  cell that was highlighted before it will turn blue. Clicking
-                  on the other cells that were not highlighted before then will
-                  turn to red.
+                  N cells will be randomly highlighted in blue for N seconds,
+                  where N is the grid size.
                 </li>
                 <li className="rockLi">
-                  The highlighted cells will remain N seconds for the user to
-                  memorize the cells. At this point, the user should not be able
-                  to perform any action.
+                  During the highlight phase, users cannot perform any actions.
                 </li>
                 <li className="rockLi">
-                  The user should be promoted to the next level if they guess
-                  all N cells correctly in one attempt.
+                  After N seconds, the grid will reset, and users must select
+                  the previously highlighted cells.
                 </li>
                 <li className="rockLi">
-                  The user should be promoted to the next level if they guess
-                  all N cells correctly in one attempt.
+                  Clicking on a highlighted cell will turn it blue; clicking on
+                  a non-highlighted cell ends the game.
                 </li>
                 <li className="rockLi">
-                  The user should be taken to the results page if the user
-                  clicks on the wrong cell.
+                  Users proceed to the next level by correctly selecting all N
+                  highlighted cells in one attempt.
                 </li>
-
                 <li className="rockLi">
-                  If the user completed all the levels, then the user should be
-                  taken to the results page.
+                  The game ends if the user clicks on a wrong cell or completes
+                  all levels.
                 </li>
               </ul>
               <div>
