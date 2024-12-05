@@ -1,4 +1,4 @@
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 import './App.css'
 import Home from './components/Home'
 import EmojiGame from './components/Emoji Game'
@@ -147,27 +147,25 @@ const cardsData = [
 ]
 
 const App = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={() => <Home />} />
-      <Route
-        exact
-        path="/emoji-game"
-        component={() => <EmojiGame emojisList={emojisList} />}
-      />
-      <Route exact path="/memory-matrix" component={() => <MemoryMatrix />} />
-      <Route
-        exact
-        path="/rock-paper-scissor"
-        component={() => <RockPaper choicesList={choicesList} />}
-      />
-      <Route
-        exact
-        path="/card-flip-memory-game"
-        component={() => <CardFlip cardsList={cardsData} />}
-      />
-    </Switch>
-  </BrowserRouter>
+  <Switch>
+    <Route exact path="/" component={() => <Home />} />
+    <Route
+      exact
+      path="/emoji-game"
+      component={() => <EmojiGame emojisList={emojisList} />}
+    />
+    <Route exact path="/memory-matrix" component={() => <MemoryMatrix />} />
+    <Route
+      exact
+      path="/rock-paper-scissor"
+      component={() => <RockPaper choicesList={choicesList} />}
+    />
+    <Route
+      exact
+      path="/card-flip-memory-game"
+      component={() => <CardFlip cardsList={cardsData} />}
+    />
+  </Switch>
 )
 
 export default App
