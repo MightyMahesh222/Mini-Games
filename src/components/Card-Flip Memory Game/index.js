@@ -194,7 +194,7 @@ const CardFlip = props => {
             alt="neutral face"
           />
         </div>
-        <h1 className="congratulations">Better luck next time</h1>
+        <h1 className="congratulations">Better luck next time!</h1>
         <p className="noFlips">No.of Flips - {Math.floor(flipCount / 2)}</p>
         <h1 className="infoMsg">
           You did not match all of the cards in record time
@@ -264,7 +264,7 @@ const CardFlip = props => {
                 onClick={changeRules}
                 type="button"
               >
-                Start Playing
+                Start playing
               </button>
             </div>
           </div>

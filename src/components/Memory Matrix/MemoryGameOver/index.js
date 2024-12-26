@@ -31,6 +31,7 @@ const emojisArray = [
     img: 'https://ik.imagekit.io/sdce03tuc/02%20Happy.svg',
   },
 ]
+
 const MemoryGameOver = props => {
   const {level, replay} = props
   const replayed = () => {
