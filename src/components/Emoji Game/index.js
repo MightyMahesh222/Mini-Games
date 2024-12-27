@@ -71,7 +71,7 @@ const EmojiGame = props => {
                 onClick={startPlaying}
                 type="button"
               >
-                Start Playing
+                Start playing
               </button>
             </div>
           </div>

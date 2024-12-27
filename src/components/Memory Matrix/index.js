@@ -140,7 +140,7 @@ const MemoryMatrix = () => {
   }
 
   return (
-    <div className="game">
+    <div className="game" data-testid="highlighted">
       {rulesPage ? (
         <div>
           <div className="rockRowSpaceDiv">
@@ -196,7 +196,7 @@ const MemoryMatrix = () => {
                   onClick={startPlaying}
                   type="button"
                 >
-                  Start Playing
+                  Start playing
                 </button>
               </div>
             </div>
