@@ -37,9 +37,9 @@ const CardFlip = props => {
   const closeModal = useCallback(() => setIsOpen(false), [])
 
   if (score === 10 && flipCount < recordScore) {
-    localStorage.setItem('recordTime', Math.floor(flipCount / 2))
+    localStorage.setItem('recordTime', Math.floor(flipCount))
   } else if (score === 10 && recordScore === 0) {
-    localStorage.setItem('recordTime', Math.floor(flipCount / 2))
+    localStorage.setItem('recordTime', Math.floor(flipCount))
   }
 
   console.log(shuffledImages)

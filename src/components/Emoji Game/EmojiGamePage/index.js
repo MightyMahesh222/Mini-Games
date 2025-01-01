@@ -183,11 +183,12 @@ const EmojiGamePage = props => {
               <div className="modal">
                 <button
                   type="button"
-                  data-testid="close"
                   onClick={closeModal}
                   className="close"
+                  data-testid="close"
                 >
-                  <CgClose />{' '}
+                  <CgClose />
+                  Close
                 </button>
               </div>
               <ul className="rockUl">

@@ -120,12 +120,13 @@ const RockGamePage = props => {
               <h3 className="modalRules">Rules</h3>
               <div className="modal">
                 <button
-                  data-testid="close"
                   type="button"
                   onClick={closeModal}
                   className="close"
+                  data-testid="close"
                 >
-                  <CgClose size={24} />{' '}
+                  <CgClose />
+                  Close
                 </button>
               </div>
               <ul className="rockUl">
