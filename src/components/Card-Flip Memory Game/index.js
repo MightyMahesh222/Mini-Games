@@ -42,8 +42,6 @@ const CardFlip = props => {
     localStorage.setItem('recordTime', Math.floor(flipCount))
   }
 
-  console.log(shuffledImages)
-
   useEffect(() => {
     let intervalId
     if (gameStarted) {
@@ -176,7 +174,7 @@ const CardFlip = props => {
           />
         </div>
         <h1 className="congratulations">Congratulations</h1>
-        <p className="noFlips">No.of Flips - {Math.floor(flipCount / 2)}</p>
+        <p className="noFlips">No.of Flips - {Math.floor(flipCount)}</p>
         <h1 className="infoMsg">You matched all of the cards in record time</h1>
 
         <div>
@@ -195,7 +193,7 @@ const CardFlip = props => {
           />
         </div>
         <h1 className="congratulations">Better luck next time!</h1>
-        <p className="noFlips">No.of Flips - {Math.floor(flipCount / 2)}</p>
+        <p className="noFlips">No.of Flips - {Math.floor(flipCount)}</p>
         <h1 className="infoMsg">
           You did not match all of the cards in record time
         </h1>
@@ -363,9 +361,9 @@ const CardFlip = props => {
               <li className="cardScore removeDot">
                 <p>
                   Card flip count -{' '}
-                  {Math.floor(flipCount / 2) > 9
-                    ? Math.floor(flipCount / 2)
-                    : `0${Math.floor(flipCount / 2)}`}
+                  {Math.floor(flipCount) > 9
+                    ? Math.floor(flipCount)
+                    : `0${Math.floor(flipCount)}`}
                 </p>
               </li>
               <li className="cardScore removeDot">
