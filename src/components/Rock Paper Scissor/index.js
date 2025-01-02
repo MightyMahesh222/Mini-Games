@@ -48,7 +48,7 @@ const RockPaper = props => {
                 <li className="rockLi">
                   When the user choice is rock and his opponent choice is rock
                   then the result will be IT IS DRAW
-                </li>
+                </li>{' '}
                 <li className="rockLi">
                   When the user choice is paper and his opponent choice is rock
                   then the result will be YOU WON
@@ -86,7 +86,7 @@ const RockPaper = props => {
                   should be the same
                 </li>
                 <li className="rockLi">
-                  When the result is IT IS LOSE, then the count of the score
+                  When the result is YOU LOSE, then the count of the score
                   should be decremented by 1.
                 </li>
               </ul>
@@ -95,7 +95,7 @@ const RockPaper = props => {
                 onClick={startPlaying}
                 type="button"
               >
-                Start Playing
+                Start playing
               </button>
             </div>
           </div>

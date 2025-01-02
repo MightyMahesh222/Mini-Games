@@ -81,15 +81,18 @@ const emojisList = [
 const choicesList = [
   {
     id: 'rock',
-    imageUrl: 'https://ik.imagekit.io/sdce03tuc/Group%207600.svg',
+    imageUrl:
+      'https://assets.ccbp.in/frontend/react-js/rock-paper-scissor/rock-image.png',
   },
   {
     id: 'scissor',
-    imageUrl: 'https://ik.imagekit.io/sdce03tuc/Group%207598.svg',
+    imageUrl:
+      'https://assets.ccbp.in/frontend/react-js/rock-paper-scissor/scissor-image.png',
   },
   {
     id: 'paper',
-    imageUrl: 'https://ik.imagekit.io/sdce03tuc/Group%206943.png',
+    imageUrl:
+      'https://assets.ccbp.in/frontend/react-js/rock-paper-scissor/paper-image.png',
   },
 ]
 

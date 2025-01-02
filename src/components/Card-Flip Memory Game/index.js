@@ -174,7 +174,7 @@ const CardFlip = props => {
           />
         </div>
         <h1 className="congratulations">Congratulations</h1>
-        <p className="noFlips">No.of Flips - {Math.floor(flipCount)}</p>
+        <p className="noFlips">No.of Flips - {Math.floor(flipCount / 2)}</p>
         <h1 className="infoMsg">You matched all of the cards in record time</h1>
 
         <div>
@@ -193,7 +193,7 @@ const CardFlip = props => {
           />
         </div>
         <h1 className="congratulations">Better luck next time!</h1>
-        <p className="noFlips">No.of Flips - {Math.floor(flipCount)}</p>
+        <p className="noFlips">No.of Flips - {Math.floor(flipCount / 2)}</p>
         <h1 className="infoMsg">
           You did not match all of the cards in record time
         </h1>
@@ -233,15 +233,18 @@ const CardFlip = props => {
                   When the game is started, the users should be able to see the
                   list of Cards that are shuffled and turned face down.
                 </li>
-
+                <li className="rockLi">
+                  When a user starts the game, the user should be able to see
+                  the Timer running.
+                </li>
+                <li className="rockLi">The Timer starts from 2 Minutes.</li>
                 <li className="rockLi">
                   If the two cards have the same image, they remain face up. If
                   not, they should be flipped face down again after a short 2
-                  seconds
+                  seconds.
                 </li>
                 <li className="rockLi">
-                  When a user starts the game, the user should be able to see
-                  the Timer running
+                  Users should be able to compare only two cards at a time.
                 </li>
                 <li className="rockLi">
                   When the user is not able to find all the cards before the
@@ -252,10 +255,6 @@ const CardFlip = props => {
                   If the user finds all the matching cards before the timer
                   ends, then the user should be redirected to the results page.
                 </li>
-                <li className="rockLi">
-                  Users should be able to compare only two cards at a time.
-                </li>
-                <li className="rockLi">The Timer starts from 2 Minutes. </li>
               </ul>
               <button
                 className="rockPlayingBtn"
@@ -318,17 +317,8 @@ const CardFlip = props => {
                           face down.
                         </li>
                         <li className="modalLi">
-                          Users should be able to compare only two cards at a
-                          time.
-                        </li>
-                        <li className="modalLi">
                           When a user starts the game, the user should be able
-                          to see the Timer running
-                        </li>
-                        <li className="modalLi">
-                          When the user is not able to find all the cards before
-                          the timer ends then the game should end and redirect
-                          to the Time Up Page.
+                          to see the Timer running.
                         </li>
                         <li className="modalLi">
                           The Timer starts from 2 Minutes.
@@ -336,9 +326,17 @@ const CardFlip = props => {
                         <li className="modalLi">
                           If the two cards have the same image, they remain face
                           up. If not, they should be flipped face down again
-                          after a short 2 seconds
+                          after a short 2 seconds.
                         </li>
-
+                        <li className="modalLi">
+                          Users should be able to compare only two cards at a
+                          time.
+                        </li>
+                        <li className="modalLi">
+                          When the user is not able to find all the cards before
+                          the timer ends then the game should end and redirect
+                          to the Time Up Page.
+                        </li>
                         <li className="modalLi">
                           If the user finds all the matching cards before the
                           timer ends, then the user should be redirected to the
@@ -361,9 +359,9 @@ const CardFlip = props => {
               <li className="cardScore removeDot">
                 <p>
                   Card flip count -{' '}
-                  {Math.floor(flipCount) > 9
-                    ? Math.floor(flipCount)
-                    : `0${Math.floor(flipCount)}`}
+                  {Math.floor(flipCount / 2) > 9
+                    ? Math.floor(flipCount / 2)
+                    : `0${Math.floor(flipCount / 2)}`}
                 </p>
               </li>
               <li className="cardScore removeDot">
